@@ -1,0 +1,16 @@
+# importing flask
+from flask import Flask
+
+# defining function for app factory
+def create_app():
+    app = Flask(__name__)
+
+    @app.route('/')
+    def hello():
+        return 'Hello, PetFax!'
+    
+    # register pet blueprint
+    from . import pet
+    app.register_blueprint(pet.bp)
+    
+    return app
